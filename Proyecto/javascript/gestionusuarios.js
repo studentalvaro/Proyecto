@@ -1,4 +1,14 @@
-document.addEventListener("DOMContentLoaded", function () {
+window.addEventListener("DOMContentLoaded", function () {
+    if (this.localStorage.getItem("sesion") == null || this.localStorage.getItem("sesion") == false) {
+        this.location.href = "inicio.html";
+    }
+
+    this.document.getElementById("logout").addEventListener("click", function () {
+        localStorage.removeItem("sesion");
+        location.href = "inicio.html"
+    });
+
+
     const tablaBody = document.querySelector("#tabla tbody");
 
     // Obtener datos del localStorage
@@ -26,14 +36,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Función para cambiar el estado de validado
-    window.cambiarEstado = function (index) {
+    cambiarEstado = function (index) {
         usuarios[index].validado = !usuarios[index].validado; // Cambiar entre true y false
         localStorage.setItem("Usuarios", JSON.stringify(usuarios)); // Guardar cambios en localStorage
         cargarTabla(); // Recargar la tabla
     };
 
     // Función para eliminar un usuario por su índice
-    window.eliminarUsuario = function (index) {
+    eliminarUsuario = function (index) {
         if (confirm("¿Seguro que deseas eliminar este usuario?")) {
             usuarios.splice(index, 1);
             localStorage.setItem("Usuarios", JSON.stringify(usuarios));
@@ -43,4 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Cargar la tabla al inicio
     cargarTabla();
+
+
 });

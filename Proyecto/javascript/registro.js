@@ -27,7 +27,7 @@ window.addEventListener("load", function () {
                 usuario: user, 
                 contrasena: password, 
                 tipo: tipoUsuario.value,
-                validado: true 
+                validado: false 
             };
 
             // Añadimos el nuevo usuario al array
