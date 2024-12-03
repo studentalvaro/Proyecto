@@ -14,6 +14,7 @@ window.addEventListener("load", function () {
         // En caso de que sea administrador
         if (usuario === "admin" && password === "admin") {
             location.href = "admin.html";
+            localStorage.setItem("sesion", true); //Se puede perfeccionar
             return;
         }
 
@@ -27,7 +28,7 @@ window.addEventListener("load", function () {
         for (let i = 0; i < usuariosRegistrados.length; i++) {
             if (usuariosRegistrados[i].usuario === usuario && usuariosRegistrados[i].contrasena === password && usuariosRegistrados[i].validado) {
                 usuarioExiste = true;
-                
+                localStorage.setItem("sesion", true); //Se puede perfeccionar
                 if(usuariosRegistrados[i].tipo=="Alumno"){
                     location.href = "alumno.html";
                     return;
