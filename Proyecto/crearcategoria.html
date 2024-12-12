@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Categorías</title>
+    <link rel="stylesheet" href="styles/stylescrearcategoria.css">
+    <script src="./javascript/crearcategoria.js"></script>
+</head>
+
+<body>
+    <header>
+        <a href="inicio.html"><img src="./images/logo.png" alt="Logo de la autoescuela Claxon"></a>
+        <nav>
+            <a id="logout">Cerrar sesión</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Gestión de Categorías</h1>
+
+        <form id="formCategoria">
+            <label for="nuevaCategoria">Nueva Categoría:</label>
+            <input type="text" id="nuevaCategoria" name="nuevaCategoria" required>
+            <button type="submit" id="anadirCategoria">Añadir Categoría</button>
+        </form>
+        
+        <h2>Categorías Existentes</h2>
+
+        <ul id="listaCategorias">
+            <!-- Aquí se añadirán las categorías dinámicamente -->
+        </ul>
+
+    </main>
+    <footer>
+        <p>&copy; Autoescuela Claxon. Todos los derechos reservados.</p>
+    </footer>
+</body>
+
+</html>

@@ -22,15 +22,18 @@ window.addEventListener("DOMContentLoaded", function () {
         // Crear filas para cada usuario
         usuarios.forEach((usuario, index) => {
             const fila = document.createElement("tr");
-            fila.innerHTML = `
-                <td>${usuario.usuario}</td>
+            fila.innerHTML = `    
+            <td>${usuario.usuario}</td>
                 <td>${usuario.tipo}</td>
                 <td>${usuario.validado ? "Sí" : "No"}</td>
                 <td>
+                    <input type="text" id="nuevaContrasena" placeholder="Nueva Contrasena">
+                    <button onclick="cambiarContrasena(${index})">Cambiar</button>
+                </td>
+                <td>
                     <button onclick="cambiarEstado(${index})">Validar / Invalidar</button>
                     <button onclick="eliminarUsuario(${index})">Eliminar</button>
-                </td>
-            `;
+                </td>`;
             tablaBody.appendChild(fila);
         });
     }
@@ -50,6 +53,31 @@ window.addEventListener("DOMContentLoaded", function () {
             cargarTabla();
         }
     };
+
+    cambiarContrasena = function (index) {
+        if (validacontrasena(document.getElementById("nuevaContrasena").value)) {
+            usuarios[index].contrasena = document.getElementById("nuevaContrasena").value; // Cambiar entre true y false
+            localStorage.setItem("Usuarios", JSON.stringify(usuarios)); // Guardar cambios en localStorage
+            cargarTabla(); // Recargar la tabla
+            this.location.href="gestionusuarios.html";
+
+        } else {
+            mostrarMensajeError("La contraseña debe incluir al menos una mayúscula, un número y un carácter especial.", "red");
+        }
+    };
+
+    function validacontrasena(password) {
+        let passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,}$/;
+        return password.match(passwordPattern);
+    }
+
+    function mostrarMensajeError(mensaje, color) {
+        const mensajeError = document.getElementById("mensajeError");
+        mensajeError.textContent = mensaje;
+        mensajeError.style.display = "";
+        mensajeError.style.color = color;
+    }
+
 
     // Cargar la tabla al inicio
     cargarTabla();
