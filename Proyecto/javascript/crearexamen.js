@@ -47,6 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Guardar preguntas seleccionadas en el examen
     document.getElementById('guardar-examen').addEventListener('click', () => {
+        const nombreExamen = document.getElementById('nombre-examen').value.trim();
+        if (!nombreExamen) {
+            alert('Por favor, ingresa un nombre para el examen.');
+            return;
+        }
+
         const preguntasSeleccionadas = Array.from(document.querySelectorAll('#preguntas-lista input:checked'))
             .map(input => preguntas[input.value]);
 
@@ -55,9 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        examenes.push(...preguntasSeleccionadas);
+        const nuevoExamen = {
+            nombre: nombreExamen,
+            preguntas: preguntasSeleccionadas
+        };
+
+        examenes.push(nuevoExamen);
         localStorage.setItem('examenes', JSON.stringify(examenes));
-        alert('Preguntas añadidas al examen exitosamente.');
+        alert('Examen guardado exitosamente.');
     });
 
     // Mostrar todas las preguntas inicialmente
