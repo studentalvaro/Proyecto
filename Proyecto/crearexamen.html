@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zona de Administrador</title>
+    <link rel="stylesheet" href="./styles/styles2.css">
+    <script src="./javascript/admin.js"></script>
+</head>
+
+<body>
+    <header>
+        <a href="inicio.html"><img src="./images/logo.png" alt="Logo de la autoescuela Claxon"></a>
+        <nav>
+            <a id="logout">Cerrar sesión</a>
+        </nav>
+    </header>
+    <main>
+        <div>
+            <label for="nombre-examen">Nombre del Examen:</label>
+            <input type="text" id="nombre-examen" placeholder="Ingresa el nombre del examen">
+        </div>
+        <div>
+            <label for="categoria-filter">Filtrar por categoría:</label>
+            <select id="categoria-filter">
+                <option value="">Todas las categorías</option>
+            </select>
+        </div>
+        <ul id="preguntas-lista">
+            <!-- Lista de preguntas cargadas dinámicamente -->
+        </ul>
+        <button id="guardar-examen">Guardar Examen</button>
+    </main>
+    <footer>
+        <p>&copy; Autoescuela Claxon. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const preguntas = JSON.parse(localStorage.getItem('preguntas')) || [];
+            const categorias = JSON.parse(localStorage.getItem('categorias')) || [];
+            const examenes = JSON.parse(localStorage.getItem('examenes')) || [];
+            const categoriaFilter = document.getElementById('categoria-filter');
+            const preguntasLista = document.getElementById('preguntas-lista');
+
+            // Cargar categorías en el filtro
+            categorias.forEach(categoria => {
+                const option = document.createElement('option');
+                option.value = categoria;
+                option.textContent = categoria;
+                categoriaFilter.appendChild(option);
+            });
+
+            // Mostrar preguntas
+            const mostrarPreguntas = (categoriaSeleccionada) => {
+                preguntasLista.innerHTML = '';
+                const preguntasFiltradas = categoriaSeleccionada 
+                    ? preguntas.filter(p => p.categoria === categoriaSeleccionada) 
+                    : preguntas;
+
+                preguntasFiltradas.forEach((pregunta, index) => {
+                    const li = document.createElement('li');
+
+                    li.innerHTML = `
+                        <input type="checkbox" id="pregunta-${index}" value="${index}">
+                        <label for="pregunta-${index}">
+                            <strong>${pregunta.enunciado}</strong> (Categoría: ${pregunta.categoria})
+                            <ul>
+                                <li>A: ${pregunta.opciones.a}</li>
+                                <li>B: ${pregunta.opciones.b}</li>
+                                <li>C: ${pregunta.opciones.c}</li>
+                            </ul>
+                        </label>
+                    `;
+
+                    preguntasLista.appendChild(li);
+                });
+            };
+
+            // Filtrar preguntas al cambiar el filtro de categoría
+            categoriaFilter.addEventListener('change', (event) => {
+                const categoriaSeleccionada = event.target.value;
+                mostrarPreguntas(categoriaSeleccionada);
+            });
+
+            // Guardar preguntas seleccionadas en el examen
+            document.getElementById('guardar-examen').addEventListener('click', () => {
+                const nombreExamen = document.getElementById('nombre-examen').value.trim();
+                if (!nombreExamen) {
+                    alert('Por favor, ingresa un nombre para el examen.');
+                    return;
+                }
+
+                const preguntasSeleccionadas = Array.from(document.querySelectorAll('#preguntas-lista input:checked'))
+                    .map(input => preguntas[input.value]);
+
+                if (preguntasSeleccionadas.length === 0) {
+                    alert('Por favor, selecciona al menos una pregunta para el examen.');
+                    return;
+                }
+
+                const nuevoExamen = {
+                    nombre: nombreExamen,
+                    preguntas: preguntasSeleccionadas
+                };
+
+                examenes.push(nuevoExamen);
+                localStorage.setItem('examenes', JSON.stringify(examenes));
+                alert('Examen guardado exitosamente.');
+            });
+
+            // Mostrar todas las preguntas inicialmente
+            mostrarPreguntas('');
+        });
+    </script>
+</body>
+
+</html>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zona de Administrador</title>
     <link rel="stylesheet" href="./styles/styles2.css">
-    <script src="./javascript/admin.js"></script>
+    <script src="./javascript/crearpregunta.js"></script>
 </head>
 
 <body>
@@ -16,6 +16,42 @@
             <a id="logout">Cerrar sesión</a>
         </nav>
     </header>
+    <main>
+        <form id="question-form">
+            <label for="enunciado">Enunciado:</label>
+            <input type="text" name="enunciado" id="enunciado">
+
+            <div>
+                <label for="a">Opción A:</label>
+                <input type="text" name="a" id="a">
+                <input type="radio" name="correcta" value="a" id="correcta-a">
+                <label for="correcta-a">Correcta</label>
+            </div>
+
+            <div>
+                <label for="b">Opción B:</label>
+                <input type="text" name="b" id="b">
+                <input type="radio" name="correcta" value="b" id="correcta-b">
+                <label for="correcta-b">Correcta</label>
+            </div>
+
+            <div>
+                <label for="c">Opción C:</label>
+                <input type="text" name="c" id="c">
+                <input type="radio" name="correcta" value="c" id="correcta-c">
+                <label for="correcta-c">Correcta</label>
+            </div>
+
+            <div>
+                <label for="categoria">Categoría:</label>
+                <select name="categoria" id="categoria">
+                    <option value="">Selecciona una categoría</option>
+                </select>
+            </div>
+
+            <button type="submit">Guardar Pregunta</button>
+        </form>
+    </main>
     <footer>
         <p>&copy; Autoescuela Claxon. Todos los derechos reservados.</p>
     </footer>
