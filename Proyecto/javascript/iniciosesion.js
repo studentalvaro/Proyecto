@@ -28,7 +28,7 @@ window.addEventListener("load", function () {
         for (let i = 0; i < usuariosRegistrados.length; i++) {
             if (usuariosRegistrados[i].usuario === usuario && usuariosRegistrados[i].contrasena === password && usuariosRegistrados[i].validado) {
                 usuarioExiste = true;
-                localStorage.setItem("sesion", true); //Se puede perfeccionar
+                localStorage.setItem("sesion", usuariosRegistrados[i].usuario); //Se puede perfeccionar
                 if(usuariosRegistrados[i].tipo=="Alumno"){
                     location.href = "alumno.html";
                     return;

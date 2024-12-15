@@ -61,14 +61,42 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Obtener la cantidad de usuarios desde localStorage
+        const usuarios = JSON.parse(localStorage.getItem('Usuarios')) || [];
+        const numeroIntentos = usuarios.length;
+
         const nuevoExamen = {
             nombre: nombreExamen,
-            preguntas: preguntasSeleccionadas
+            preguntas: preguntasSeleccionadas,
+            intentos: numeroIntentos // Agregar propiedad "intentos"
         };
 
         examenes.push(nuevoExamen);
         localStorage.setItem('examenes', JSON.stringify(examenes));
         alert('Examen guardado exitosamente.');
+    });
+
+    // Eliminar un examen por nombre
+    document.getElementById('boton-eliminar-examen').addEventListener('click', () => {
+        const nombreEliminar = document.getElementById('eliminar-examen').value.trim();
+        if (!nombreEliminar) {
+            alert('Por favor, ingresa el nombre del examen que deseas eliminar.');
+            return;
+        }
+
+        const indiceExamen = examenes.findIndex(examen => examen.nombre === nombreEliminar);
+
+        if (indiceExamen === -1) {
+            alert(`No se encontró ningún examen con el nombre: ${nombreEliminar}`);
+            return;
+        }
+
+        // Eliminar el examen del array
+        examenes.splice(indiceExamen, 1);
+
+        // Actualizar el localStorage
+        localStorage.setItem('examenes', JSON.stringify(examenes));
+        alert(`El examen "${nombreEliminar}" ha sido eliminado exitosamente.`);
     });
 
     // Mostrar todas las preguntas inicialmente

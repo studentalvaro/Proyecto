@@ -1,40 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zona de Administrador</title>
-    <link rel="stylesheet" href="./styles/styles2.css">
-    <script src="./javascript/admin.js"></script>
+    <title>Zona de Alumnos</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+    <script src="./javascript/realizarexamen.js" defer></script>
 </head>
-
 <body>
     <header>
-        <a href="inicio.html"><img src="./images/logo.png" alt="Logo de la autoescuela Claxon"></a>
-        <nav>
-            <a id="logout">Cerrar sesión</a>
-        </nav>
+        <h1>Bienvenido a la Zona de Alumnos</h1>
     </header>
     <main>
-        <div>
-            <label for="nombre-examen">Nombre del Examen:</label>
-            <input type="text" id="nombre-examen" placeholder="Ingresa el nombre del examen">
-        </div>
-        <div>
-            <label for="categoria-filter">Filtrar por categoría:</label>
-            <select id="categoria-filter">
-                <option value="">Todas las categorías</option>
-            </select>
-        </div>
-        <ul id="preguntas-lista">
-            <!-- Lista de preguntas cargadas dinámicamente -->
+        <h2>Exámenes Pendientes</h2>
+        <ul id="lista-examenes-pendientes">
+            <!-- Aquí se cargarán los exámenes pendientes dinámicamente -->
         </ul>
-        <button id="guardar-examen">Guardar Examen</button>
+        <h2>Exámenes Realizados</h2>
+        <ul id="lista-examenes-realizados">
+            <!-- Aquí se cargarán los exámenes realizados dinámicamente -->
+        </ul>
     </main>
     <footer>
         <p>&copy; Autoescuela Claxon. Todos los derechos reservados.</p>
     </footer>
 </body>
-
 </html>
