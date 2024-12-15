@@ -3,23 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zona de Alumnos</title>
+    <title>Realizar Examen</title>
     <link rel="stylesheet" href="./styles/styles.css">
     <script src="./javascript/realizarexamen.js" defer></script>
+    <style>
+        .oculta {
+            display: none;
+        }
+
+        .activa {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Bienvenido a la Zona de Alumnos</h1>
+        <h1>Exámenes Disponibles</h1>
     </header>
     <main>
         <h2>Exámenes Pendientes</h2>
-        <ul id="lista-examenes-pendientes">
-            <!-- Aquí se cargarán los exámenes pendientes dinámicamente -->
-        </ul>
+        <ul id="lista-examenes-pendientes"></ul>
+
         <h2>Exámenes Realizados</h2>
-        <ul id="lista-examenes-realizados">
-            <!-- Aquí se cargarán los exámenes realizados dinámicamente -->
-        </ul>
+        <ul id="lista-examenes-realizados"></ul>
     </main>
     <footer>
         <p>&copy; Autoescuela Claxon. Todos los derechos reservados.</p>

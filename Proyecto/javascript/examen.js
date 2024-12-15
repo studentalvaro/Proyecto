@@ -1,107 +1,144 @@
 window.addEventListener('load', function () {
-    // Obtener las preguntas del examen desde localStorage
-    const preguntas = JSON.parse(localStorage.getItem('preguntas')) || [];
-    if (!preguntas.length) return alert('No se encontraron preguntas para el examen.');
+    // Obtener el examen actual y las preguntas
+    let examen = JSON.parse(localStorage.getItem('examenActual')) || {};
+    let preguntas = examen.preguntas || [];
+    let alumno = localStorage.getItem('sesion') || 'Alumno desconocido'; // Obtener el nombre del alumno
+    let carruselDiv = document.getElementById("carrusel-container");
 
-    const carruselContainer = document.getElementById('carrusel-container');
-    let preguntaIndex = 0;
-
-    // Almacenar las respuestas seleccionadas por el alumno
-    const respuestasSeleccionadas = [];
-
-    // Mostrar las preguntas en el carrusel
-    function mostrarPregunta() {
-        // Limpiar el contenedor
-        carruselContainer.innerHTML = '';
-
-        // Obtener la pregunta actual
-        const pregunta = preguntas[preguntaIndex];
-        let opcionesHTML = '';
-
-        // Crear las opciones con radio buttons
-        ['a', 'b', 'c'].forEach(opcion => {
-            opcionesHTML += `
-                <label>
-                    <input type="radio" name="respuesta" value="${opcion}" data-opcion="${opcion}" ${respuestasSeleccionadas[preguntaIndex] === opcion ? 'checked' : ''}>
-                    ${pregunta.opciones[opcion]}
-                </label><br>
-            `;
-        });
-
-        // Crear el HTML de la pregunta
-        const preguntaHTML = `
-            <div class="pregunta">
-                <strong>${pregunta.enunciado}</strong>
-                <div class="opciones">
-                    ${opcionesHTML}
-                </div>
+    // Crear los elementos del carrusel con las preguntas
+    preguntas.forEach((pregunta, index) => {
+        let divPregunta = document.createElement('div');
+        divPregunta.classList.add('pregunta', 'oculta'); // Inicialmente todas ocultas
+        divPregunta.dataset.index = index; // Guardar el índice para facilitar la navegación
+        if (index === 0) divPregunta.classList.add('activa'); // Mostrar la primera pregunta
+        divPregunta.innerHTML = `
+            <p>${pregunta.enunciado}</p>
+            <div>
+                <label><input type="radio" name="pregunta${index}" value="a"> ${pregunta.opciones.a}</label>
+                <label><input type="radio" name="pregunta${index}" value="b"> ${pregunta.opciones.b}</label>
+                <label><input type="radio" name="pregunta${index}" value="c"> ${pregunta.opciones.c}</label>
             </div>
         `;
-        carruselContainer.innerHTML = preguntaHTML;
-
-        // Cambiar el texto del botón "Siguiente" si es la última pregunta
-        const botonSiguiente = document.getElementById('siguiente');
-        if (preguntaIndex === preguntas.length - 1) {
-            botonSiguiente.textContent = 'Terminar';
-        } else {
-            botonSiguiente.textContent = 'Siguiente';
-        }
-
-        // Agregar el evento para capturar la respuesta seleccionada
-        const radios = document.querySelectorAll('input[type="radio"][name="respuesta"]');
-        radios.forEach(radio => {
-            radio.addEventListener('change', function () {
-                respuestasSeleccionadas[preguntaIndex] = this.value;  // Guardar la respuesta seleccionada
-            });
-        });
-    }
-
-    // Mostrar la primera pregunta
-    mostrarPregunta();
-
-    // Manejar el botón de "Anterior"
-    document.getElementById('anterior').addEventListener('click', function () {
-        if (preguntaIndex > 0) {
-            preguntaIndex--;
-            mostrarPregunta();
-        }
+        carruselDiv.appendChild(divPregunta);
     });
 
-    // Manejar el botón de "Siguiente"
-    document.getElementById('siguiente').addEventListener('click', function () {
-        if (preguntaIndex < preguntas.length - 1) {
-            preguntaIndex++;
-            mostrarPregunta();
-        } else {
-            // Calcular la nota
-            let respuestasCorrectas = 0;
+    let currentQuestionIndex = 0; // Índice de la pregunta actual
+    const totalQuestions = preguntas.length;
 
-            // Comparar las respuestas seleccionadas con las respuestas correctas
+    // Función para navegar a la siguiente pregunta
+    function siguiente() {
+        let preguntaActiva = document.querySelector('.pregunta.activa');
+        preguntaActiva.classList.replace('activa', 'oculta');
+
+        currentQuestionIndex = (currentQuestionIndex + 1) % totalQuestions; // Ciclar al inicio si llegamos al final
+
+        // Mostrar la pregunta siguiente
+        let siguientePregunta = document.querySelector(`.pregunta[data-index="${currentQuestionIndex}"]`);
+        siguientePregunta.classList.replace('oculta', 'activa');
+
+        // Controlar el estado de los botones
+        actualizarBotones();
+    }
+
+    // Función para navegar a la pregunta anterior
+    function anterior() {
+        let preguntaActiva = document.querySelector('.pregunta.activa');
+        preguntaActiva.classList.replace('activa', 'oculta');
+
+        currentQuestionIndex = (currentQuestionIndex - 1 + totalQuestions) % totalQuestions; // Ciclar al final si llegamos al inicio
+
+        // Mostrar la pregunta anterior
+        let anteriorPregunta = document.querySelector(`.pregunta[data-index="${currentQuestionIndex}"]`);
+        anteriorPregunta.classList.replace('oculta', 'activa');
+
+        // Controlar el estado de los botones
+        actualizarBotones();
+    }
+
+    // Función para actualizar los botones
+    function actualizarBotones() {
+        let botonSiguiente = document.getElementById("siguiente");
+        let botonAnterior = document.getElementById("anterior");
+        let botonFinalizar = document.getElementById("finalizar");
+
+        // Deshabilitar el botón "Anterior" si estamos en la primera pregunta
+        if (currentQuestionIndex === 0) {
+            botonAnterior.disabled = true;
+        } else {
+            botonAnterior.disabled = false;
+        }
+
+        // Cambiar el botón "Siguiente" por "Finalizar" si estamos en la última pregunta
+        if (currentQuestionIndex === totalQuestions - 1) {
+            botonSiguiente.style.display = "none";  // Ocultar el botón de "Siguiente"
+            botonFinalizar.style.display = "inline"; // Mostrar el botón de "Finalizar"
+        } else {
+            botonSiguiente.style.display = "inline";
+            botonFinalizar.style.display = "none";
+        }
+    }
+
+    // Añadir eventos a los botones de navegación
+    let botonSiguiente = document.getElementById("siguiente");
+    let botonAnterior = document.getElementById("anterior");
+
+    botonSiguiente.addEventListener("click", siguiente);
+    botonAnterior.addEventListener("click", anterior);
+
+    // Finalizar el examen y guardar la nota
+    document.getElementById("finalizar").addEventListener("click", function () {
+        // Verificar si todas las preguntas tienen respuesta seleccionada
+        if (preguntas.every((pregunta, index) => {
+            let opciones = document.getElementsByName(`pregunta${index}`);
+            return Array.from(opciones).some(opcion => opcion.checked);
+        })) {
+            let nota = 0;
+
+            // Calcular la nota basada en las respuestas correctas
             preguntas.forEach((pregunta, index) => {
-                const respuestaCorrecta = pregunta.correcta; // Aquí obtenemos la respuesta correcta de la pregunta
-                if (respuestasSeleccionadas[index] === respuestaCorrecta) {
-                    respuestasCorrectas++;
+                let opciones = document.getElementsByName(`pregunta${index}`);
+                let respuesta = Array.from(opciones).find(opcion => opcion.checked)?.value;
+
+                if (respuesta === pregunta.correcta) {
+                    nota += 1;
                 }
             });
 
-            const nota = (respuestasCorrectas / preguntas.length) * 10; // Nota sobre 10
+            // Calcular la nota sobre 10
+            let notaFinal = (nota / preguntas.length) * 10;
 
-            // Obtener el nombre del alumno desde localStorage
-            const nombreAlumno = localStorage.getItem('sesion') || 'Alumno Desconocido';
+            // Obtener los intentos desde el localStorage o crear uno vacío si no existe
+            let intentos = JSON.parse(localStorage.getItem('intentos')) || [];
 
-            // Guardar el resultado en localStorage
-            const resultados = JSON.parse(localStorage.getItem('resultados')) || [];
-            resultados.push({
-                nombre: nombreAlumno,
-                nota: nota.toFixed(2) // Guardar la nota con dos decimales
-            });
-            localStorage.setItem('resultados', JSON.stringify(resultados));
+            // Verificar si el intento ya existe en el array de intentos
+            let intentoExistente = intentos.find(intento => intento.examen === examen.nombre && intento.alumno === alumno);
 
-            // Guardar las respuestas seleccionadas en localStorage si lo deseas
-            localStorage.setItem('respuestasSeleccionadas', JSON.stringify(respuestasSeleccionadas));
+            if (intentoExistente) {
+                // Si el intento ya existe, solo actualizarlo
+                intentoExistente.nota = notaFinal.toFixed(2); // Guardar la nota sobre 10
+                intentoExistente.realizado = true; // Marcar como realizado
+            } else {
+                // Si el intento no existe, agregarlo como nuevo
+                let nuevoIntento = {
+                    examen: examen.nombre,
+                    alumno: alumno,
+                    nota: notaFinal.toFixed(2), // Guardar la nota sobre 10
+                    realizado: true
+                };
+                intentos.push(nuevoIntento);
+            }
 
-            // Redirigir a la página 'realizarexamen.html'
-            window.location.href = './realizarexamen.html';  // Cambia la URL según corresponda
+            // Guardar el array de intentos actualizado en el localStorage
+            localStorage.setItem('intentos', JSON.stringify(intentos));
+
+            // Mostrar el resultado
+            alert(`Examen completado. Nota: ${notaFinal.toFixed(2)}`);
+            window.location.href = 'realizarexamen.html'; // Redirigir a la página de exámenes
+        } else {
+            alert("Por favor, responde todas las preguntas.");
         }
     });
+
+    // Inicializar los botones
+    actualizarBotones();
 });

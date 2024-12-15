@@ -1,37 +1,49 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const examenes = JSON.parse(localStorage.getItem('examenes')) || [];
-    const listaExamenesPendientes = document.getElementById('lista-examenes-pendientes');
+window.addEventListener('load', function () {
+    // Obtener los exámenes del localStorage
+    let examenes = JSON.parse(localStorage.getItem('examenes')) || [];
+    let listaPendientes = document.getElementById('lista-examenes-pendientes');
+    let listaRealizados = document.getElementById('lista-examenes-realizados');
+    let alumno = localStorage.getItem('sesion') || 'Alumno desconocido'; // Obtener el nombre del alumno
 
-    if (examenes.length === 0) {
-        listaExamenesPendientes.innerHTML = '<p>No hay exámenes disponibles.</p>';
-    } else {
-        examenes.forEach((examen, index) => {
-            const li = document.createElement('li');
-            li.innerHTML = `
-                <strong>${examen.nombre}</strong>
-                <button data-index="${index}" class="realizar-examen">Realizar examen</button>
-            `;
-            listaExamenesPendientes.appendChild(li);
+    // Obtener los intentos desde el localStorage
+    let intentos = JSON.parse(localStorage.getItem('intentos')) || [];
+
+    // Filtrar los exámenes pendientes (exámenes que no han sido realizados)
+    let examenesPendientes = examenes.filter(examen => 
+        !intentos.some(intent => intent.examen === examen.nombre && intent.alumno === alumno && intent.realizado)
+    );
+
+    // Filtrar los exámenes realizados (exámenes que ya tienen un intento realizado para este alumno)
+    let examenesRealizados = intentos.filter(intent => intent.alumno === alumno && intent.realizado);
+
+    // Mostrar los exámenes pendientes
+    examenesPendientes.forEach(examen => {
+        let li = document.createElement('li');
+        li.textContent = examen.nombre;
+        let botonRealizar = document.createElement('button');
+        botonRealizar.textContent = 'Realizar Examen';
+        botonRealizar.addEventListener('click', function() {
+            // Crear un nuevo intento en el localStorage bajo la clave 'intentos'
+            intentos.push({
+                examen: examen.nombre,
+                alumno: alumno,
+                realizado: false,
+                nota: null
+            });
+            localStorage.setItem('intentos', JSON.stringify(intentos));
+            
+            // Guardar el examen actual para cargarlo en examen.js
+            localStorage.setItem('examenActual', JSON.stringify(examen));
+            window.location.href = 'examen.html';
         });
-    }
-
-    // Agregar evento para el botón "Realizar examen"
-    listaExamenesPendientes.addEventListener('click', (event) => {
-        if (event.target.classList.contains('realizar-examen')) {
-            const index = event.target.getAttribute('data-index');
-            realizarExamen(index);
-        }
+        li.appendChild(botonRealizar);
+        listaPendientes.appendChild(li);
     });
 
-    // Función para redirigir al examen
-    function realizarExamen(index) {
-        const examen = examenes[index];
-        if (!examen) return alert('Examen no encontrado.');
-
-        // Guardar el examen en localStorage para usarlo en examen.html
-        localStorage.setItem('examenActual', JSON.stringify(examen));
-
-        // Redirigir a la página examen.html
-        window.location.href = './examen.html';
-    }
+    // Mostrar los exámenes realizados con su nota (solo los que corresponden al alumno)
+    examenesRealizados.forEach(intento => {
+        let li = document.createElement('li');
+        li.textContent = `${intento.examen} - Nota: ${intento.nota}`;
+        listaRealizados.appendChild(li);
+    });
 });
