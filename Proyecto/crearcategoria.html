@@ -5,9 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Categorías</title>
-    <link rel="stylesheet" href="styles/stylescrearcategoria.css">
+    <!--styles-->
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/stylescrearcategoria.css">
+    <!--scripts-->
     <script src="./javascript/includes.js"></script>
     <script src="./javascript/crearcategoria.js"></script>
+    <!--fontawesome-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -17,20 +22,20 @@
     <!--Cuerpo-->
     <main>
         <h1>Gestión de Categorías</h1>
-
+    
         <form id="formCategoria">
             <label for="nuevaCategoria">Nueva Categoría:</label>
             <input type="text" id="nuevaCategoria" name="nuevaCategoria" required>
             <button type="submit" id="anadirCategoria">Añadir Categoría</button>
         </form>
-
+    
         <h2>Categorías Existentes</h2>
-
+    
         <ul id="listaCategorias">
             <!-- Aquí se añadirán las categorías dinámicamente -->
         </ul>
-
     </main>
+    
 
     <!--Footer-->
     <footer id="footer-container"></footer>

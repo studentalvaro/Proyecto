@@ -1,0 +1,69 @@
+/* Estilo para main */
+main {
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    flex-direction: column;
+    padding: 20px;
+    background-color: #e3bfc5; /* Fondo de main */
+    flex-grow: 1;
+    gap: 20px;
+}
+
+/* Estilo para el formulario */
+#question-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos horizontalmente */
+    justify-content: center; /* Centra los elementos verticalmente */
+    gap: 15px;
+    background-color: #f9e0e6;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;  /* Asegura que el formulario ocupe todo el espacio disponible */
+    max-width: 600px; /* Establece un ancho máximo para evitar que se estire demasiado */
+    text-align: center;
+    box-sizing: border-box; /* Asegura que el padding no afecte al ancho */
+}
+
+#question-form label {
+    font-size: 16px;
+    color: #8e0d1e;
+}
+
+#question-form input, #question-form select, #question-form button {
+    padding: 10px;
+    font-size: 16px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#question-form button {
+    background-color: #8e0d1e;
+    color: white;
+    cursor: pointer;
+}
+
+#question-form button:hover {
+    background-color: #e34f65;
+}
+
+/* Asegurar que el input de enunciado ocupe todo el ancho */
+#question-form #enunciado {
+    width: 100%; /* Hace que el input de enunciado ocupe todo el ancho disponible */
+}
+
+/* Agrupar el label, input de texto y radio buttons en línea */
+#question-form .options-group {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    gap: 10px; /* Añade espacio entre los elementos */
+}
+
+/* Asegurarse de que los inputs de radio se alineen con el label */
+#question-form .options-group input[type="radio"] {
+    margin-left: 5px;
+}

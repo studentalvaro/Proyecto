@@ -1,0 +1,68 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #e3bfc5; /* Fondo de main */
+    height: 100vh;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #8d0d1b; /* Color del título */
+}
+
+ul#lista-intentos {
+    list-style-type: none; /* Eliminar los puntos por defecto de la lista */
+    padding: 0;
+    width: 100%;
+    max-width: 800px; /* Limitar el ancho de la lista */
+    margin-top: 20px;
+}
+
+ul#lista-intentos li {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between; /* Espacio entre los elementos de cada item */
+    align-items: center;
+}
+
+ul#lista-intentos li:nth-child(even) {
+    background-color: #f1f1f1; /* Fondo alternado para las filas */
+}
+
+ul#lista-intentos li:hover {
+    background-color: #f9e0e6; /* Cambio de color al pasar el ratón */
+}
+
+ul#lista-intentos li .detalle {
+    font-size: 14px;
+    color: #2d2d2d; /* Gris oscuro */
+}
+
+ul#lista-intentos li .nota {
+    font-weight: bold;
+    color: #8e0d1e; /* Rojo para la nota */
+}
+
+ul#lista-intentos li .acciones button {
+    background-color: #8e0d1e;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+ul#lista-intentos li .acciones button:hover {
+    background-color: #e34f65; /* Rojo más brillante al pasar el ratón */
+}

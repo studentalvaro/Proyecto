@@ -1,34 +1,101 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cierre de sesión</title>
+    <style>
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e3bfc5; /* Fondo de la página */
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.message {
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+.message h1 {
+    font-size: 24px;
+    color: #8e0d1e; /* Rojo intenso */
+    margin-bottom: 10px;
+}
+
+.message p {
+    font-size: 16px;
+    color: #2d2d2d; /* Gris oscuro */
+}
+
+.message p small {
+    font-size: 14px;
+    color: #8e0d1e; /* Rojo intenso */
+    font-style: italic;
+}
+
+/*No funciona
+@keyframes countdown {
+    0% {
+        content: '5';
+    }
+    20% {
+        content: '4';
+    }
+    40% {
+        content: '3';
+    }
+    60% {
+        content: '2';
+    }
+    80% {
+        content: '1';
+    }
+    100% {
+        content: '0';
+    }
+}*/
+
+    </style>
     <script>
         // Elimina el "sesion" del localStorage
         localStorage.removeItem("sesion");
 
         // Redirige a la página de inicio después de 5 segundos
-        setTimeout(function() {
+        setTimeout(function () {
             window.location.href = 'inicio.html';
         }, 5000);
     </script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        .message {
-            font-size: 24px;
-            color: #333;
-        }
-    </style>
+    <script>
+        // Countdown para redirigir
+        let countdown = 5;
+        let countdownElement = document.getElementById('countdown');
+
+        setInterval(function () {
+            countdown--;
+            countdownElement.textContent = countdown;
+
+            if (countdown === 0) {
+                window.location.href = 'inicio.html'; // Redirige a la página de inicio
+            }
+        }, 1000); // Actualiza el contador cada segundo
+    </script>
 </head>
+
 <body>
     <div class="message">
         <h1>Has cerrado sesión. ¡Hasta pronto!</h1>
-        <p>Serás redirigido automáticamente en 5 segundos...</p>
+        <p>Serás redirigido automáticamente en <span id="countdown">5</span> segundos...</p>
     </div>
 </body>
+
 </html>

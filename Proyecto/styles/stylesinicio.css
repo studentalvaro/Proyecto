@@ -1,0 +1,46 @@
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e3bfc5; /* Color de fondo de la paleta (rosita muy claro) */
+    padding: 20px;
+}
+
+/* Contenedor cuadrado que contiene todo el contenido funcional */
+.main-container {
+    width: 100%;
+    max-width: 900px; /* Limita el ancho máximo */
+    background-color: #f9e0e6; /* Color de fondo igual al header y footer */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para las secciones dentro del contenedor */
+section {
+    margin-bottom: 30px;
+}
+
+/* Estilo específico para cada bloque de contenido */
+.intro-content, .servicios-content, .testimonios-content, .contacto-content {
+    text-align: center;
+}
+
+h1, h2, h3 {
+    color: #8e0d1e; /* Rojo intenso para los encabezados */
+}
+
+p, ul {
+    color: #2d2d2d; /* Gris oscuro para el texto */
+    font-size: 16px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 10px 0;
+}

@@ -1,0 +1,67 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #e3bfc5; /* Fondo de main */
+    height: 100vh;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #8d0d1b; /* Color del título */
+}
+
+small.error-message {
+    color: #e34f65; /* Rojo para los mensajes de error */
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    max-width: 800px; /* Limitar el ancho de la tabla */
+    border-collapse: collapse; /* Asegurar que las celdas no tengan espacios entre ellas */
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    font-size: 16px;
+}
+
+th {
+    background-color: #f9e0e6; /* Fondo claro para los encabezados */
+    color: #8d0d1b; /* Color del texto en los encabezados */
+}
+
+td {
+    background-color: #fff;
+    color: #2d2d2d; /* Color oscuro para el texto */
+}
+
+tr:nth-child(even) td {
+    background-color: #f1f1f1; /* Fondo alternado en filas */
+}
+
+tr:hover td {
+    background-color: #f9e0e6; /* Fondo rosita muy claro al pasar el ratón */
+}
+
+button {
+    background-color: #8e0d1e;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #e34f65; /* Rojo más brillante al pasar el ratón */
+}

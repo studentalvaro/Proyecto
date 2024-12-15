@@ -1,118 +1,69 @@
-/* General */
-* {
-    margin: 0;
-    padding: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-body {
-    background-color: #e3bfc5;
-}
-
-/* Cabecera */
-header {
-    height: 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffffff;
-    padding: 0 20px;
-    position: sticky;
-    border-bottom: 2px solid #8d0d1b;
-}
-
-header nav a {
-    text-decoration: none;
-    color: #8d0d1b;
-    margin-left: 20px;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-header nav a:hover {
-    color: #e34f65;
-}
-
-header img {
-    width: 120px;
-    height: 120px;
-}
-
-/* Cuerpo */
+/* Estilo para main */
 main {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; /* Asegura que los elementos estén uno debajo de otro */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    flex-direction: column;
     padding: 20px;
-    min-height: calc(100vh - 160px);
+    background-color: #e3bfc5; /* Fondo de main */
+    flex-grow: 1; /* Permite que el main crezca y empuje el footer hacia abajo */
+    gap: 20px;
 }
 
-h1 {
-    color: #8d0d1b;
-    margin-bottom: 20px;
-}
-
-.form-container {
-    background-color: #ffffff;
-    padding: 30px;
+/* Estilo para el formulario */
+#formCategoria {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #f9e0e6;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
     text-align: center;
 }
 
-.form-container h2 {
-    color: #8d0d1b;
-    margin-bottom: 20px;
+#formCategoria label {
+    font-size: 16px;
+    color: #8e0d1e;
 }
 
-.form-container label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-    text-align: left;
-}
-
-.form-container input[type="text"],
-.form-container input[type="password"],
-.form-container input[type="submit"] {
-    width: 100%;
+#formCategoria input, #formCategoria button {
     padding: 10px;
-    margin-top: 5px;
+    font-size: 16px;
+    margin: 5px 0;
     border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 14px;
 }
 
-.form-container input[type="submit"] {
-    background-color: #8d0d1b;
-    color: #ffffff;
-    font-weight: bold;
+#formCategoria button {
+    background-color: #8e0d1e;
+    color: white;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.form-container input[type="submit"]:hover {
+#formCategoria button:hover {
     background-color: #e34f65;
 }
 
-/* Mensajes de error */
-.error-message {
-    color: #e34f65;
-    font-size: 14px;
-    margin-bottom: 10px;
+/* Estilo para las categorías existentes */
+h2 {
+    color: #8e0d1e;
+    font-size: 18px;
+    text-align: center;
 }
 
-/* Pie */
-footer {
-    height: 80px;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top: 2px solid #8d0d1b;
-    color: #8d0d1b;
-    font-size: 14px;
+#listaCategorias {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#listaCategorias li {
+    background-color: #f9e0e6;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
