@@ -18,11 +18,11 @@ window.addEventListener("load", function () {
         usuarios.forEach((usuario, index) => {
             const fila = document.createElement("tr");
             fila.innerHTML = `    
-            <td>${usuario.usuario}</td>
+                <td>${usuario.usuario}</td>
                 <td>${usuario.tipo}</td>
                 <td>${usuario.validado ? "Sí" : "No"}</td>
                 <td>
-                    <input type="text" id="nuevaContrasena" placeholder="Nueva Contrasena">
+                    <input type="text" id="nuevaContrasena${index}" placeholder="Nueva Contrasena">
                     <button onclick="cambiarContrasena(${index})">Cambiar</button>
                 </td>
                 <td>
@@ -49,23 +49,38 @@ window.addEventListener("load", function () {
         }
     };
 
+    // Función para cambiar la contraseña de un usuario
     cambiarContrasena = function (index) {
-        if (validacontrasena(document.getElementById("nuevaContrasena").value)) {
-            usuarios[index].contrasena = document.getElementById("nuevaContrasena").value; // Cambiar entre true y false
-            localStorage.setItem("Usuarios", JSON.stringify(usuarios)); // Guardar cambios en localStorage
-            cargarTabla(); // Recargar la tabla
-            this.location.href="gestionusuarios.html";
+        // Obtener el valor de la nueva contraseña desde el input correspondiente
+        const nuevaContrasena = document.getElementById(`nuevaContrasena${index}`).value;
 
+        // Validar la contraseña
+        if (validacontrasena(nuevaContrasena)) {
+            // Cambiar la contraseña del usuario
+            usuarios[index].contrasena = nuevaContrasena;
+
+            // Guardar cambios en localStorage
+            localStorage.setItem("Usuarios", JSON.stringify(usuarios));
+
+            // Recargar la tabla
+            cargarTabla();
+
+            // Mensaje de éxito
+            mostrarMensajeError("Contraseña cambiada correctamente.", "green");
+            
         } else {
+            // Mostrar mensaje de error
             mostrarMensajeError("La contraseña debe incluir al menos una mayúscula, un número y un carácter especial.", "red");
         }
     };
 
+    // Función para validar el formato de la contraseña
     function validacontrasena(password) {
         let passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,}$/;
         return password.match(passwordPattern);
     }
 
+    // Función para mostrar mensajes de error
     function mostrarMensajeError(mensaje, color) {
         const mensajeError = document.getElementById("mensajeError");
         mensajeError.textContent = mensaje;
@@ -73,9 +88,7 @@ window.addEventListener("load", function () {
         mensajeError.style.color = color;
     }
 
-
     // Cargar la tabla al inicio
     cargarTabla();
-
 
 });
