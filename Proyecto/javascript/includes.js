@@ -56,7 +56,7 @@ window.addEventListener("load", function () {
             const pageTitle = document.title;
             const saludo = document.getElementById("saludo");
             if (saludo) {
-                saludo.innerHTML = `Hola, estás en: ${pageTitle}`;
+                saludo.innerHTML = `${pageTitle}`;
             }
         })
         .catch(error => {
