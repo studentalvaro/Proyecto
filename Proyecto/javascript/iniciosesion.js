@@ -15,7 +15,7 @@ window.addEventListener("load", function () {
         // En caso de que sea administrador
         if (usuario === "admin" && password === "admin") {
             location.href = "admin.html";
-            localStorage.setItem("sesion", true); //Se puede perfeccionar
+            localStorage.setItem("sesion", "admin"); //Se puede perfeccionar
             return;
         }
 
