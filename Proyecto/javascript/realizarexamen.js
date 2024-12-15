@@ -1,4 +1,14 @@
 window.addEventListener('load', function () {
+    //Comprobaciones de sesión y logout
+    if (this.localStorage.getItem("sesion") == null || this.localStorage.getItem("sesion") == false) {
+        this.location.href = "inicio.html";
+    }
+
+    this.document.getElementById("logout").addEventListener("click", function () {
+        localStorage.removeItem("sesion");
+        location.href = "inicio.html"
+    });
+
     // Obtener los exámenes del localStorage
     let examenes = JSON.parse(localStorage.getItem('examenes')) || [];
     let listaPendientes = document.getElementById('lista-examenes-pendientes');
@@ -9,7 +19,7 @@ window.addEventListener('load', function () {
     let intentos = JSON.parse(localStorage.getItem('intentos')) || [];
 
     // Filtrar los exámenes pendientes (exámenes que no han sido realizados)
-    let examenesPendientes = examenes.filter(examen => 
+    let examenesPendientes = examenes.filter(examen =>
         !intentos.some(intent => intent.examen === examen.nombre && intent.alumno === alumno && intent.realizado)
     );
 
@@ -22,7 +32,7 @@ window.addEventListener('load', function () {
         li.textContent = examen.nombre;
         let botonRealizar = document.createElement('button');
         botonRealizar.textContent = 'Realizar Examen';
-        botonRealizar.addEventListener('click', function() {
+        botonRealizar.addEventListener('click', function () {
             // Crear un nuevo intento en el localStorage bajo la clave 'intentos'
             intentos.push({
                 examen: examen.nombre,
@@ -31,7 +41,7 @@ window.addEventListener('load', function () {
                 nota: null
             });
             localStorage.setItem('intentos', JSON.stringify(intentos));
-            
+
             // Guardar el examen actual para cargarlo en examen.js
             localStorage.setItem('examenActual', JSON.stringify(examen));
             window.location.href = 'examen.html';

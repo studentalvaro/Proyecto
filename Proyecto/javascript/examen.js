@@ -1,4 +1,14 @@
 window.addEventListener('load', function () {
+
+    if (this.localStorage.getItem("sesion") == null || this.localStorage.getItem("sesion") == false) {
+        this.location.href = "inicio.html";
+    }
+
+    this.document.getElementById("logout").addEventListener("click", function () {
+        localStorage.removeItem("sesion");
+        location.href = "inicio.html"
+    });
+
     // Obtener el examen actual y las preguntas
     let examen = JSON.parse(localStorage.getItem('examenActual')) || {};
     let preguntas = examen.preguntas || [];

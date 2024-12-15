@@ -1,4 +1,5 @@
 window.addEventListener("DOMContentLoaded", function () {
+    //Comprobaciones de sesión y logout
     if (this.localStorage.getItem("sesion") == null || this.localStorage.getItem("sesion") == false) {
         this.location.href = "inicio.html";
     }

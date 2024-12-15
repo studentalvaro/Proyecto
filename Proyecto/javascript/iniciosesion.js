@@ -1,4 +1,5 @@
 window.addEventListener("load", function () {
+
     document.getElementById("iniciarsesion").addEventListener("click", function (event) {
         event.preventDefault();
 

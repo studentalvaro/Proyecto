@@ -1,4 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
+    //Comprobaciones de sesión y logout
+    if (this.localStorage.getItem("sesion") == null || this.localStorage.getItem("sesion") == false) {
+        this.location.href = "inicio.html";
+    }
+
+    this.document.getElementById("logout").addEventListener("click", function () {
+        localStorage.removeItem("sesion");
+        location.href = "inicio.html"
+    });
+
     const preguntas = JSON.parse(localStorage.getItem('preguntas')) || [];
     const categorias = JSON.parse(localStorage.getItem('categorias')) || [];
     const examenes = JSON.parse(localStorage.getItem('examenes')) || [];
@@ -16,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mostrar preguntas
     const mostrarPreguntas = (categoriaSeleccionada) => {
         preguntasLista.innerHTML = '';
-        const preguntasFiltradas = categoriaSeleccionada 
-            ? preguntas.filter(p => p.categoria === categoriaSeleccionada) 
+        const preguntasFiltradas = categoriaSeleccionada
+            ? preguntas.filter(p => p.categoria === categoriaSeleccionada)
             : preguntas;
 
         preguntasFiltradas.forEach((pregunta, index) => {

@@ -1,4 +1,14 @@
 window.addEventListener('DOMContentLoaded', () => {
+    //Comprobaciones de sesión y logout
+    if (this.localStorage.getItem("sesion") == null || this.localStorage.getItem("sesion") == false) {
+        this.location.href = "inicio.html";
+    }
+
+    this.document.getElementById("logout").addEventListener("click", function () {
+        localStorage.removeItem("sesion");
+        location.href = "inicio.html"
+    });
+
     // Leer categorías del localStorage y añadirlas al desplegable
     let categorias = JSON.parse(localStorage.getItem('categorias')) || [];
     let categoriaSelect = document.getElementById('categoria');
