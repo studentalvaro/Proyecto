@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cierre de sesión</title>
+    <script>
+        // Elimina el "sesion" del localStorage
+        localStorage.removeItem("sesion");
+
+        // Redirige a la página de inicio después de 5 segundos
+        setTimeout(function() {
+            window.location.href = 'inicio.html';
+        }, 5000);
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .message {
+            font-size: 24px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="message">
+        <h1>Has cerrado sesión. ¡Hasta pronto!</h1>
+        <p>Serás redirigido automáticamente en 5 segundos...</p>
+    </div>
+</body>
+</html>

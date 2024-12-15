@@ -1,14 +1,8 @@
-window.addEventListener("DOMContentLoaded", function () {
-    //Comprobaciones de sesión y logout
-    if (this.localStorage.getItem("sesion") == null || this.localStorage.getItem("sesion") == false) {
+window.addEventListener("load", function () {
+    //Comprobaciones de sesión
+    if (localStorage.getItem("sesion") == null || localStorage.getItem("sesion") == false) {
         this.location.href = "inicio.html";
     }
-
-    this.document.getElementById("logout").addEventListener("click", function () {
-        localStorage.removeItem("sesion");
-        location.href = "inicio.html"
-    });
-
 
     const tablaBody = document.querySelector("#tabla tbody");
 

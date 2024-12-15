@@ -1,13 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     //Comprobaciones de sesión y logout
-    if (this.localStorage.getItem("sesion") == null || this.localStorage.getItem("sesion") == false) {
+    if (localStorage.getItem("sesion") == null || localStorage.getItem("sesion") == false) {
         this.location.href = "inicio.html";
     }
-
-    this.document.getElementById("logout").addEventListener("click", function () {
-        localStorage.removeItem("sesion");
-        location.href = "inicio.html"
-    });
 
     const preguntas = JSON.parse(localStorage.getItem('preguntas')) || [];
     const categorias = JSON.parse(localStorage.getItem('categorias')) || [];
