@@ -1,25 +1,22 @@
-/* El contenedor de main debe tener el color de fondo de la paleta */
 main {
     flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #e3bfc5; /* Color de fondo de la paleta (rosita muy claro) */
+    background-color: #e3bfc5; 
     padding: 20px;
 }
 
-/* Contenedor centrado del formulario */
 .form-container {
     width: 100%;
-    max-width: 500px; /* Limita el ancho máximo */
-    background-color: #f9e0e6; /* Color de fondo igual al header y footer */
+    max-width: 500px; 
+    background-color: #f9e0e6; 
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
-/* Estilo para los campos del formulario */
 form {
     display: flex;
     flex-direction: column;
@@ -27,7 +24,7 @@ form {
 }
 
 label {
-    color: #8e0d1e; /* Rojo intenso para las etiquetas */
+    color: #8e0d1e; 
     font-size: 16px;
     text-align: left;
     margin-left: 10px;
@@ -37,7 +34,7 @@ input[type="text"],
 input[type="password"] {
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #8e0d1e; /* Rojo intenso para los bordes */
+    border: 1px solid #8e0d1e; 
     border-radius: 5px;
     width: 100%;
     box-sizing: border-box;
@@ -54,7 +51,7 @@ input[type="radio"] {
 
 input[type="submit"] {
     padding: 10px;
-    background-color: #8e0d1e; /* Rojo intenso */
+    background-color: #8e0d1e; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -63,12 +60,11 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #e34f65; /* Rojo más claro para hover */
+    background-color: #e34f65; 
 }
 
-/* Estilo para el mensaje de error */
 .error-message {
-    color: #e34f65; /* Rojo para el mensaje de error */
+    color: #e34f65; 
     margin-top: 10px;
     font-size: 14px;
 }

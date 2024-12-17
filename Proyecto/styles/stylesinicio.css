@@ -1,38 +1,37 @@
 main {
     flex-grow: 1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #e3bfc5; /* Color de fondo de la paleta (rosita muy claro) */
+    background-color: #e3bfc5; 
     padding: 20px;
 }
 
-/* Contenedor cuadrado que contiene todo el contenido funcional */
 .main-container {
     width: 100%;
-    max-width: 900px; /* Limita el ancho máximo */
-    background-color: #f9e0e6; /* Color de fondo igual al header y footer */
+    max-width: 900px; 
+    background-color: #f9e0e6;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
 }
 
-/* Estilo para las secciones dentro del contenedor */
 section {
     margin-bottom: 30px;
 }
 
-/* Estilo específico para cada bloque de contenido */
 .intro-content, .servicios-content, .testimonios-content, .contacto-content {
     text-align: center;
 }
 
 h1, h2, h3 {
-    color: #8e0d1e; /* Rojo intenso para los encabezados */
+    color: #8e0d1e; 
 }
 
 p, ul {
-    color: #2d2d2d; /* Gris oscuro para el texto */
+    color: #2d2d2d;
     font-size: 16px;
 }
 
@@ -43,4 +42,48 @@ ul {
 
 ul li {
     margin: 10px 0;
+}
+
+h1 {
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    color: #8e0d1e;
+    text-align: center;
+}
+
+.testimonios-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.testimonios-content div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: left;
+    max-width: 600px;
+}
+/*Aquí utilizamos el filtro y aplicamos la animación*/
+.testimonios-content img {
+    width: 80px;
+    height: 80px;
+    border-radius: 20%;
+    object-fit: cover;
+    transition: transform 0.3s ease, border-radius 0.3s ease;
+    filter: brightness(1.1) contrast(1.05);
+    mix-blend-mode: multiply;
+}
+
+.testimonios-content img:hover {
+    transform: scale(1.2);
+    border-radius: 50%;
+    filter: brightness(1.2) contrast(1.1);
+}
+
+.testimonios-content p {
+    color: #2d2d2d;
+    margin: 0;
+    font-size: 16px;
 }

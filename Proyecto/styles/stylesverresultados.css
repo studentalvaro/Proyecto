@@ -3,7 +3,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color: #e3bfc5; /* Fondo de main */
+    background-color: #e3bfc5; 
     height: 100vh;
     padding: 20px;
 }
@@ -11,14 +11,14 @@ main {
 h2 {
     font-size: 24px;
     margin-bottom: 20px;
-    color: #8d0d1b; /* Color del título */
+    color: #8d0d1b;
 }
 
 ul#lista-intentos {
-    list-style-type: none; /* Eliminar los puntos por defecto de la lista */
+    list-style-type: none; 
     padding: 0;
     width: 100%;
-    max-width: 800px; /* Limitar el ancho de la lista */
+    max-width: 800px; 
     margin-top: 20px;
 }
 
@@ -30,26 +30,26 @@ ul#lista-intentos li {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-size: 16px;
     display: flex;
-    justify-content: space-between; /* Espacio entre los elementos de cada item */
+    justify-content: space-between; 
     align-items: center;
 }
 
 ul#lista-intentos li:nth-child(even) {
-    background-color: #f1f1f1; /* Fondo alternado para las filas */
+    background-color: #f1f1f1; 
 }
 
 ul#lista-intentos li:hover {
-    background-color: #f9e0e6; /* Cambio de color al pasar el ratón */
+    background-color: #f9e0e6; 
 }
 
 ul#lista-intentos li .detalle {
     font-size: 14px;
-    color: #2d2d2d; /* Gris oscuro */
+    color: #2d2d2d; 
 }
 
 ul#lista-intentos li .nota {
     font-weight: bold;
-    color: #8e0d1e; /* Rojo para la nota */
+    color: #8e0d1e; 
 }
 
 ul#lista-intentos li .acciones button {
@@ -64,5 +64,5 @@ ul#lista-intentos li .acciones button {
 }
 
 ul#lista-intentos li .acciones button:hover {
-    background-color: #e34f65; /* Rojo más brillante al pasar el ratón */
+    background-color: #e34f65; 
 }

@@ -3,7 +3,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color: #e3bfc5; /* Fondo de main */
+    background-color: #e3bfc5; 
     height: 100vh;
     padding: 20px;
 }
@@ -11,19 +11,19 @@ main {
 h2 {
     font-size: 24px;
     margin-bottom: 20px;
-    color: #8d0d1b; /* Color del título */
+    color: #8d0d1b; 
 }
 
 small.error-message {
-    color: #e34f65; /* Rojo para los mensajes de error */
+    color: #e34f65; 
     font-size: 14px;
     margin-bottom: 10px;
 }
 
 table {
     width: 100%;
-    max-width: 800px; /* Limitar el ancho de la tabla */
-    border-collapse: collapse; /* Asegurar que las celdas no tengan espacios entre ellas */
+    max-width: 800px; 
+    border-collapse: collapse; 
     margin-top: 20px;
 }
 
@@ -34,21 +34,21 @@ th, td {
 }
 
 th {
-    background-color: #f9e0e6; /* Fondo claro para los encabezados */
-    color: #8d0d1b; /* Color del texto en los encabezados */
+    background-color: #f9e0e6; 
+    color: #8d0d1b; 
 }
 
 td {
     background-color: #fff;
-    color: #2d2d2d; /* Color oscuro para el texto */
+    color: #2d2d2d;
 }
 
 tr:nth-child(even) td {
-    background-color: #f1f1f1; /* Fondo alternado en filas */
+    background-color: #f1f1f1;
 }
 
 tr:hover td {
-    background-color: #f9e0e6; /* Fondo rosita muy claro al pasar el ratón */
+    background-color: #f9e0e6;
 }
 
 button {
@@ -63,5 +63,5 @@ button {
 }
 
 button:hover {
-    background-color: #e34f65; /* Rojo más brillante al pasar el ratón */
+    background-color: #e34f65;
 }

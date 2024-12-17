@@ -1,4 +1,3 @@
-/* Asegurar que el body ocupe toda la altura de la ventana */
 html, body {
     height: 100%;
     margin: 0;
@@ -6,23 +5,21 @@ html, body {
     flex-direction: column;
 }
 
-/* Estilo para main */
 main {
     display: flex;
-    justify-content: center; /* Centra las secciones horizontalmente */
-    align-items: center; /* Centra las secciones verticalmente */
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
     gap: 20px;
     padding: 20px;
-    background-color: #e3bfc5; /* Fondo de main */
-    flex-grow: 1; /* Permite que el main crezca y empuje el footer hacia abajo */
+    background-color: #e3bfc5;
+    flex-grow: 1;
 }
 
-/* Estilo para las zonas dentro de main */
 .zona {
     width: 100%;
     max-width: 300px;
-    height: 200px; /* Asegura que todas las zonas tengan el mismo tamaño */
+    height: 200px;
     background-color: #f9e0e6;
     padding: 20px;
     border-radius: 10px;
@@ -30,8 +27,8 @@ main {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centra el contenido verticalmente */
-    align-items: center; /* Centra el contenido horizontalmente */
+    justify-content: center;
+    align-items: center;
 }
 
 .zona h2 {
@@ -60,12 +57,11 @@ main {
     color: #e34f65;
 }
 
-/* Estilo para el footer */
 footer {
     background-color: #f9e0e6;
     text-align: center;
     padding: 20px;
-    margin-top: auto; /* Asegura que el footer se quede al final de la página */
+    margin-top: auto;
     width: 100%;
 }
 

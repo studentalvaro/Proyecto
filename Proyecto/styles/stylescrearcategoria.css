@@ -1,16 +1,14 @@
-/* Estilo para main */
 main {
     display: flex;
-    justify-content: center; /* Centra el contenido horizontalmente */
-    align-items: center; /* Centra el contenido verticalmente */
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     padding: 20px;
-    background-color: #e3bfc5; /* Fondo de main */
-    flex-grow: 1; /* Permite que el main crezca y empuje el footer hacia abajo */
+    background-color: #e3bfc5;
+    flex-grow: 1;
     gap: 20px;
 }
 
-/* Estilo para el formulario */
 #formCategoria {
     display: flex;
     flex-direction: column;
@@ -46,7 +44,6 @@ main {
     background-color: #e34f65;
 }
 
-/* Estilo para las categorías existentes */
 h2 {
     color: #8e0d1e;
     font-size: 18px;

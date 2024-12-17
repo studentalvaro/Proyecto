@@ -1,5 +1,5 @@
 main {
-    background-color: #e3bfc5; /* Color de fondo del main */
+    background-color: #e3bfc5;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,7 +7,7 @@ main {
 }
 
 form {
-    background-color: #f9e0e6; /* Color de fondo para el contenedor del formulario */
+    background-color: #f9e0e6; 
     padding: 20px;
     border-radius: 10px;
     width: 100%;
@@ -67,15 +67,15 @@ ul li a:hover {
 }
 
 #guardar-examen {
-    margin-bottom: 20px; /* Espacio entre el botón de guardar y el de eliminar */
+    margin-bottom: 20px;
 }
 
 #boton-eliminar-examen {
-    margin-top: 20px; /* Espacio entre el input de eliminar y su botón */
+    margin-top: 20px;
 }
 
 form > div:last-of-type {
-    border-top: 2px solid #ddd; /* Línea de separación */
+    border-top: 2px solid #ddd;
     padding-top: 20px;
     margin-top: 20px;
 }

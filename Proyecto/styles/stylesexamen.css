@@ -3,7 +3,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #e3bfc5; /* Fondo de main */
+    background-color: #e3bfc5; 
     height: 100vh;
     padding: 20px;
 }
@@ -14,12 +14,12 @@ main {
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 700px; /* Ancho máximo para no estirar demasiado el carrusel */
-    margin-bottom: 20px; /* Espacio entre el carrusel y los botones */
+    max-width: 700px; 
+    margin-bottom: 20px; 
 }
 
 .pregunta {
-    display: none; /* Inicialmente las preguntas están ocultas */
+    display: none; 
     text-align: center;
     padding: 20px;
     background-color: #ffffff;
@@ -29,7 +29,7 @@ main {
 }
 
 .pregunta.activa {
-    display: block; /* Mostrar la pregunta activa */
+    display: block; 
 }
 
 .pregunta p {
